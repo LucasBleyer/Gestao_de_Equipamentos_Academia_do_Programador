@@ -1,10 +1,12 @@
 # Gestao de Equipamentos Academia do Programador
 
-✔Problema a ser resolvido:
+Problema a ser resolvido:
 Junior cuida do estoque de equipamentos na empresa onde trabalha. E sempre controla o inventário dos seus
 equipamentos e as manutenções que eles já sofreram em uma planilha do Excel. Desta forma, ele resolveu pedir ajuda
 do aos alunos da Academia do Programador 2022 no desenvolvimento de um Software para automatizar o seu serviço.
+
 1. Controle de Equipamentos
+
 Requisito 1.1: Como funcionário, Junior quer ter a possibilidade de registrar equipamentos
 • Deve ter um nome com no mínimo 6 caracteres;
 • Deve ter um preço de aquisição;
