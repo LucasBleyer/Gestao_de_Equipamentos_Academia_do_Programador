@@ -6,21 +6,21 @@ namespace GestaoDeEquipamentos.ConsoleApp
     {
         static void Main(string[] args)
         {
-            do
-            {
-                MenuOpcoes();
-            } while (true);
-            
+    #region Declaração de Variáveis
+            char opcao;
+    #endregion
+
+            MostrarOpcoes(out opcao);      
         }
 
     #region Métodos do Menu
-        static void MenuOpcoes()
+        static void MostrarOpcoes(out char opcao)
         {
-            Console.Write("[1] Registrar equipamentos: ");
-            Console.Write("[2] Visualizar todos os equipamentos registrados: ");
-            Console.Write("[3] Editar um equipamento: ");
-            Console.Write("[4] Excluir um equipamento já registrado: ");
-            Console.Write("[5] Excluir um equipamento já registrado: ");
+            Console.WriteLine("[1] Registrar equipamentos: ");
+            Console.WriteLine("[2] Visualizar todos os equipamentos registrados: ");
+            Console.WriteLine("[3] Editar um equipamento: ");
+            Console.WriteLine("[4] Excluir um equipamento já registrado: ");
+            opcao = Convert.ToChar(Console.ReadLine());
         }
 
         #endregion
