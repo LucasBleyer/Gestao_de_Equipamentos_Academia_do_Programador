@@ -6,23 +6,14 @@ namespace GestaoDeEquipamentos.ConsoleApp
     {
         static void Main(string[] args)
         {
-    #region Declaração de Variáveis
-            char opcao;
-    #endregion
-
-            MostrarOpcoes(out opcao);      
+            String[] nome_equipamento = new string[1000];
+            String[] preco_equipamento = new string[1000];
+            int[] numero_serie = new int[1000];
+            DateTime[] data_fabricacao = new DateTime[1000];
+            String[] nome_fabricante = new string[1000];
         }
 
     #region Métodos do Menu
-        static void MostrarOpcoes(out char opcao)
-        {
-            Console.WriteLine("[1] Registrar equipamentos: ");
-            Console.WriteLine("[2] Visualizar todos os equipamentos registrados: ");
-            Console.WriteLine("[3] Editar um equipamento: ");
-            Console.WriteLine("[4] Excluir um equipamento já registrado: ");
-            opcao = Convert.ToChar(Console.ReadLine());
-        }
-
         #endregion
 
     #region Métodos de Controle
@@ -30,5 +21,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
 
     #region Métodos de Chamado
         #endregion
+
     }
 }
