@@ -53,6 +53,7 @@ registrado, sendo que ele possa editar todos os campos.
 Requisito 2.4: Como funcionário Junior quer ter a possibilidade de excluir um chamado.
 
 3. Restrições Técnicas
+
 Deverão utilizar apenas Arrays para o armazenamento das informações dos equipamentos e também
 dos chamados, ou seja, não podem utilizar nenhuma classe dos pacotes System.Collections ou
 System.Collections.Generic ou System.Linq
