@@ -11,9 +11,9 @@ namespace GestaoDeEquipamentos.ConsoleApp
             int[] numero_serie = new int[1000];
             String[] data_fabricacao = new string[1000];
             String[] nome_fabricante = new string[1000];
-            char opcao = '1';
+            char opcao;
 
-            MenuOpcoes(opcao);
+            MenuOpcoes(out opcao);
 
             switch (opcao)
             {
@@ -33,7 +33,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
         }
 
         #region Métodos do Menu
-        static char MenuOpcoes(char opcao)
+        static char MenuOpcoes(out char opcao)
         {
             Console.WriteLine("[1] Registrar equipamentos");
             Console.WriteLine("[2] Visualizar todos os equipamentos registrados");
@@ -48,28 +48,34 @@ namespace GestaoDeEquipamentos.ConsoleApp
 
         static void RegistrarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-
-        }
+            TituloLimpar("Regitrar Equipamento");
+        }  
 
         static void VizualizarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-
+            TituloLimpar("Vizualizar Equipamento");
         }
 
         static void EditarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-
+            TituloLimpar("Editar Equipamento");
         }
 
         static void ExcluirEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-
+            TituloLimpar("Excluir Equipamento");
         }
-
         #endregion
 
         #region Métodos de Chamado
         #endregion
 
+        #region Métodos Auxiliares
+        static void TituloLimpar(string mensagem)
+        {
+            Console.Clear();
+            Console.WriteLine(mensagem);
+        }
+        #endregion
     }
 }
