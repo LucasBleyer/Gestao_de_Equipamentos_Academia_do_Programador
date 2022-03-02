@@ -4,23 +4,32 @@ namespace GestaoDeEquipamentos.ConsoleApp
 {
     internal class Program
     {
+        static int posicao_equipamento = 0;
         static void Main(string[] args)
         {
+        //variáveis controle de equipamentos
             String[] nome_equipamento = new string[1000];
             decimal[] preco_equipamento = new decimal[1000];
             int[] numero_serie = new int[1000];
             String[] data_fabricacao = new string[1000];
             String[] nome_fabricante = new string[1000];
 
+        //variáveis controle de chamados
             String[] titulo_chamado = new string[1000];
             String[] descricao_chamado = new String[1000];
             String[] equipamento_chamado = new String[1000];
             String[] data_abertura_chamado = new string[1000];
 
+        //menus
             while (true)
             {
                 InserirTituloLimpar("Manutenção de Equipamentos");
                 char opcao_menu_principal = MenuPrincipal();
+
+                if (opcao_menu_principal == 's')
+                {
+                    break;
+                }
 
                 if (opcao_menu_principal == '1')
                 {
@@ -28,6 +37,10 @@ namespace GestaoDeEquipamentos.ConsoleApp
                     char opcao_controle_equipamentos;
                     MenuOpcoesControleEquipamentos(out opcao_controle_equipamentos);
                     VerificaOpcaoControleEquipamentos(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante, opcao_controle_equipamentos);
+                    if (opcao_controle_equipamentos == 's')
+                    {
+                        continue;
+                    }
                 }
                 else if (opcao_menu_principal == '2')
                 {
@@ -35,10 +48,10 @@ namespace GestaoDeEquipamentos.ConsoleApp
                     char opcao_controle_chamados;
                     MenuOpcoesControleChamados(out opcao_controle_chamados);
                     VerificaOpcaoControleChamados(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado, opcao_controle_chamados);
-                }
-                else if (opcao_menu_principal == 's')
-                {
-                    break;
+                    if (opcao_controle_chamados == 's')
+                    {
+                        continue;
+                    }
                 }
             }
         }
@@ -73,24 +86,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
             opcao_controle_chamados = Convert.ToChar(Console.ReadLine());
             return opcao_controle_chamados;
         }
-        static void VerificaOpcaoControleChamados(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado, char opcao_controle_chamados)
-        {
-            switch (opcao_controle_chamados)
-            {
-                case '1':
-                    TituloChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
-                    break;
-                case '2':
-                    DescricaoChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
-                    break;
-                case '3':
-                    EquipamentoChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
-                    break;
-                case '4':
-                    DataAberturaChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
-                    break;
-            }
-        }
         static void VerificaOpcaoControleEquipamentos(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante, char opcao_controle_equipamentos)
         {
             switch (opcao_controle_equipamentos)
@@ -109,26 +104,70 @@ namespace GestaoDeEquipamentos.ConsoleApp
                     break;
             }
         }
-
+        static void VerificaOpcaoControleChamados(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado, char opcao_controle_chamados)
+        {
+            switch (opcao_controle_chamados)
+            {
+                case '1':
+                    TituloChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    break;
+                case '2':
+                    DescricaoChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    break;
+                case '3':
+                    EquipamentoChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    break;
+                case '4':
+                    DataAberturaChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    break;
+            }
+        }
         #endregion
 
         #region Métodos de Controle
-
         static void RegistrarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
             InserirTituloLimpar("Regitrar Equipamento");
-        }
 
+            Console.Write("Nome do Equipamento: ");
+            string nome = Console.ReadLine();
+            nome_equipamento[posicao_equipamento] = nome;
+
+            Console.Write("Digite o preço do Equipamento: ");
+            decimal preco = Convert.ToDecimal(Console.ReadLine());
+            preco_equipamento[posicao_equipamento] = preco;
+
+            Console.Write("Digite o número de série do Equipamento: ");
+            int numeroSerie = Convert.ToInt32(Console.ReadLine());
+            numero_serie[posicao_equipamento] = numeroSerie;
+
+            Console.Write("Digite a data de fabricação do Equipamento: ");
+            string data = Console.ReadLine();
+            data_fabricacao[posicao_equipamento] = data;
+
+            Console.Write("Digite o fabricante do Equipamento: ");
+            string fabricante = Console.ReadLine();
+            nome_fabricante[posicao_equipamento] = fabricante;
+
+            posicao_equipamento++;
+
+        }
         static void VizualizarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
             InserirTituloLimpar("Vizualizar Equipamento");
-        }
 
+            for (int i = 0; i < 10; i++)
+            {
+                    Console.WriteLine("Nome do equipamento: " + nome_equipamento[i]);
+                    Console.WriteLine("Preço do equipamento: " + preco_equipamento[i]);
+                    Console.WriteLine("Número de Série do equipamento: " + numero_serie[i]);
+                    Console.WriteLine("Data de Fabricação do equipamento: " + data_fabricacao[i]);
+            }
+        }
         static void EditarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
             InserirTituloLimpar("Editar Equipamento");
         }
-
         static void ExcluirEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
             InserirTituloLimpar("Excluir Equipamento");
