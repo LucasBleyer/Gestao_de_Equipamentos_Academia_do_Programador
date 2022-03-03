@@ -159,7 +159,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 Console.WriteLine("Preço do equipamento: " + preco_equipamento[id]);
                 Console.WriteLine("Número de série do equipamento: " + numero_serie[id]);
                 Console.WriteLine("Data de fabricação do equipamento: " + data_fabricacao[id]);
-                Console.WriteLine("Nome fabricante equipamento: " + data_fabricacao[id]);
+                Console.WriteLine("Nome fabricante equipamento: " + nome_fabricante[id]);
                 Console.WriteLine("\n");
             }
             Console.ReadKey();
@@ -173,7 +173,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
             int[] ids = new int[1000];
 
             Console.WriteLine("Informe os novos dados do Equipamento com o ID " + id_usuario);
-            if (id_usuario == ids[cont_equipamentos])
+            if (id_usuario >= ids[cont_equipamentos])
             {
                 Console.Write("Digite o novo nome do Equipamento: ");
                 string nome = Console.ReadLine();
@@ -207,7 +207,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
             int[] ids = new int[1000];
 
             Console.WriteLine("Informe os novos dados do Equipamento com o ID " + id_usuario);
-            if (id_usuario == ids[cont_equipamentos])
+            if (id_usuario >= ids[cont_equipamentos])
             {
                 cont_equipamentos--;
             }
