@@ -7,20 +7,17 @@ namespace GestaoDeEquipamentos.ConsoleApp
         static int cont_equipamentos = 0;
         static void Main(string[] args)
         {
-            //variáveis controle de equipamentos
             String[] nome_equipamento = new string[1000];
             decimal[] preco_equipamento = new decimal[1000];
             int[] numero_serie = new int[1000];
             String[] data_fabricacao = new string[1000];
             String[] nome_fabricante = new string[1000];
 
-            //variáveis controle de chamados
             String[] titulo_chamado = new string[1000];
             String[] descricao_chamado = new String[1000];
             String[] equipamento_chamado = new String[1000];
             String[] data_abertura_chamado = new string[1000];
 
-            //menus
             while (true)
             {
                 InserirTituloLimpar("Manutenção de Equipamentos");
