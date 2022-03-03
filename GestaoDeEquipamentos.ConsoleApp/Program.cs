@@ -179,7 +179,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
         #endregion
 
         #region Métodos de Chamado
-
         static void TituloChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
         {
             InserirTituloLimpar("Título do Chamado\n");
@@ -196,7 +195,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
         {
             InserirTituloLimpar("Data de Abertura Chamado\n");
         }
-
         #endregion
 
         #region Métodos Auxiliares
