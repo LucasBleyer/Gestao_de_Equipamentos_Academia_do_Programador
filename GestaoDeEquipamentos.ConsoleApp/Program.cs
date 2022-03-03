@@ -4,23 +4,23 @@ namespace GestaoDeEquipamentos.ConsoleApp
 {
     internal class Program
     {
-        static int posicao_equipamento = 0;
+        static int cont_equipamentos = 0;
         static void Main(string[] args)
         {
-        //variáveis controle de equipamentos
+            //variáveis controle de equipamentos
             String[] nome_equipamento = new string[1000];
             decimal[] preco_equipamento = new decimal[1000];
             int[] numero_serie = new int[1000];
             String[] data_fabricacao = new string[1000];
             String[] nome_fabricante = new string[1000];
 
-        //variáveis controle de chamados
+            //variáveis controle de chamados
             String[] titulo_chamado = new string[1000];
             String[] descricao_chamado = new String[1000];
             String[] equipamento_chamado = new String[1000];
             String[] data_abertura_chamado = new string[1000];
 
-        //menus
+            //menus
             while (true)
             {
                 InserirTituloLimpar("Manutenção de Equipamentos");
@@ -55,7 +55,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 }
             }
         }
-
         #region Métodos do Menu
         static char MenuPrincipal()
         {
@@ -127,50 +126,55 @@ namespace GestaoDeEquipamentos.ConsoleApp
         #region Métodos de Controle
         static void RegistrarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            InserirTituloLimpar("Regitrar Equipamento");
+            InserirTituloLimpar("Regitrar Equipamento\n");
 
-            Console.Write("Nome do Equipamento: ");
+            Console.Write("Digite o nome do Equipamento: ");
             string nome = Console.ReadLine();
-            nome_equipamento[posicao_equipamento] = nome;
+            nome_equipamento[cont_equipamentos] = nome;
 
             Console.Write("Digite o preço do Equipamento: ");
             decimal preco = Convert.ToDecimal(Console.ReadLine());
-            preco_equipamento[posicao_equipamento] = preco;
+            preco_equipamento[cont_equipamentos] = preco;
 
             Console.Write("Digite o número de série do Equipamento: ");
             int numeroSerie = Convert.ToInt32(Console.ReadLine());
-            numero_serie[posicao_equipamento] = numeroSerie;
+            numero_serie[cont_equipamentos] = numeroSerie;
 
             Console.Write("Digite a data de fabricação do Equipamento: ");
             string data = Console.ReadLine();
-            data_fabricacao[posicao_equipamento] = data;
+            data_fabricacao[cont_equipamentos] = data;
 
             Console.Write("Digite o fabricante do Equipamento: ");
             string fabricante = Console.ReadLine();
-            nome_fabricante[posicao_equipamento] = fabricante;
+            nome_fabricante[cont_equipamentos] = fabricante;
 
-            posicao_equipamento++;
-
+            cont_equipamentos++;
         }
         static void VizualizarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            InserirTituloLimpar("Vizualizar Equipamento");
+            InserirTituloLimpar("Vizualizar Equipamento\n");
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < cont_equipamentos; i++)
             {
-                    Console.WriteLine("Nome do equipamento: " + nome_equipamento[i]);
-                    Console.WriteLine("Preço do equipamento: " + preco_equipamento[i]);
-                    Console.WriteLine("Número de Série do equipamento: " + numero_serie[i]);
-                    Console.WriteLine("Data de Fabricação do equipamento: " + data_fabricacao[i]);
+                Console.WriteLine("ID do equipamento: " + i);
+                Console.WriteLine("Nome do equipamento: " + nome_equipamento[i]);
+                Console.WriteLine("Preço do equipamento: " + preco_equipamento[i]);
+                Console.WriteLine("Número de série do equipamento: " + numero_serie[i]);
+                Console.WriteLine("Data de fabricação do equipamento: " + data_fabricacao[i]);
+                Console.WriteLine("\n");
             }
+            Console.ReadKey();
         }
         static void EditarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            InserirTituloLimpar("Editar Equipamento");
+            InserirTituloLimpar("Editar Equipamento\n");
+
+            Console.Write("Informe o ID do equipamento a ser editado: ");
+            int id = Convert.ToInt32(Console.ReadLine());
         }
         static void ExcluirEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            InserirTituloLimpar("Excluir Equipamento");
+            InserirTituloLimpar("Excluir Equipamento\n");
         }
         #endregion
 
@@ -178,19 +182,19 @@ namespace GestaoDeEquipamentos.ConsoleApp
 
         static void TituloChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
         {
-            InserirTituloLimpar("Título do Chamado");
+            InserirTituloLimpar("Título do Chamado\n");
         }
         static void DescricaoChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
         {
-            InserirTituloLimpar("Descrição do Chamado");
+            InserirTituloLimpar("Descrição do Chamado\n");
         }
         static void EquipamentoChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
         {
-            InserirTituloLimpar("Equipamento do Chamado");
+            InserirTituloLimpar("Equipamento do Chamado\n");
         }
         static void DataAberturaChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
         {
-            InserirTituloLimpar("Data de Abertura Chamado");
+            InserirTituloLimpar("Data de Abertura Chamado\n");
         }
 
         #endregion
