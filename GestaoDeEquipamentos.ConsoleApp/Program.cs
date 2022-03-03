@@ -6,6 +6,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
     {
         static int cont_equipamentos = 0;
         static int cont_chamados = 0;
+        static int[] ids_equipamentos = new int[1000];
         static void Main(string[] args)
         {
             String[] nomes_equipamentos = new string[1000];
@@ -83,20 +84,27 @@ namespace GestaoDeEquipamentos.ConsoleApp
             opcao_controle_chamados = Convert.ToChar(Console.ReadLine());
             return opcao_controle_chamados;
         }
+        #endregion
+
+        #region Método Verificar Opções Menu
         static void VerificaOpcaoControleEquipamentos(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante, char opcao_controle_equipamentos)
         {
             switch (opcao_controle_equipamentos)
             {
                 case '1':
+                    InserirTituloLimpar("Regitrar Equipamento\n");
                     RegistrarEquipamento(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
                     break;
                 case '2':
+                    InserirTituloLimpar("Vizualizar Equipamento\n");
                     VizualizarEquipamento(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
                     break;
                 case '3':
+                    InserirTituloLimpar("Editar Equipamento\n");
                     EditarEquipamento(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
                     break;
                 case '4':
+                    InserirTituloLimpar("Excluir Equipamento\n");
                     ExcluirEquipamento(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
                     break;
             }
@@ -124,8 +132,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
         #region Métodos de Controle
         static void RegistrarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            InserirTituloLimpar("Regitrar Equipamento\n");
-
             Console.Write("Informe o nome do Equipamento: ");
             string nome = Console.ReadLine();
             nome_equipamento[cont_equipamentos] = nome;
@@ -147,12 +153,9 @@ namespace GestaoDeEquipamentos.ConsoleApp
             nome_fabricante[cont_equipamentos] = fabricante;
 
             cont_equipamentos++;
-            Console.ReadKey();
         }
         static void VizualizarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            InserirTituloLimpar("Vizualizar Equipamento\n");
-
             for (int i = 0; i < cont_equipamentos; i++)
             {
                 Console.WriteLine("ID do equipamento: " + i);
@@ -167,14 +170,13 @@ namespace GestaoDeEquipamentos.ConsoleApp
         }
         static void EditarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            InserirTituloLimpar("Editar Equipamento\n");
-
             Console.Write("Informe o ID de um equipamento a ser editado: ");
             int id_usuario = Convert.ToInt32(Console.ReadLine());
-            int[] ids = new int[1000];
+            ids_equipamentos[cont_equipamentos] = id_usuario;
 
             Console.WriteLine("Informe os novos dados do Equipamento com o ID " + id_usuario);
-            if (id_usuario >= ids[cont_equipamentos])
+
+            if (id_usuario == ids_equipamentos[cont_equipamentos])
             {
                 Console.Write("Informe o novo nome do Equipamento: ");
                 string nome = Console.ReadLine();
@@ -195,22 +197,17 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 Console.Write("Informe o novo nome do fabricante do Equipamento: ");
                 string fabricante = Console.ReadLine();
                 nome_fabricante[cont_equipamentos - 1] = fabricante;
-
-                Console.ReadKey();
-            }
+            }  
         }
         static void ExcluirEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            InserirTituloLimpar("Excluir Equipamento\n");
-
             Console.Write("Informe o ID de um equipamento a ser excluído: ");
             int id_usuario = Convert.ToInt32(Console.ReadLine());
-            int[] ids = new int[1000];
+            ids_equipamentos[cont_equipamentos] = id_usuario;
 
-            Console.WriteLine("Informe os novos dados do Equipamento com o ID " + id_usuario);
-            if (id_usuario >= ids[cont_equipamentos])
+            if (id_usuario == ids_equipamentos[cont_equipamentos])
             {
-                cont_equipamentos--;
+                
             }
         }
         #endregion
@@ -228,9 +225,9 @@ namespace GestaoDeEquipamentos.ConsoleApp
             string descricao = Console.ReadLine();
             descricao_chamado[cont_equipamentos] = descricao;
 
-            Console.Write("Informe o equipamento a ser chamado: ");
-            string equipamento = Console.ReadLine();
-            equipamento_chamado[cont_equipamentos] = equipamento;
+            Console.Write("Informe o ID do equipamento a ser chamado: ");
+            int id_usuario = Convert.ToInt32(Console.ReadLine());
+            int[] ids = new int[1000];
 
             Console.Write("Data de abertura do chamado: ");
             string data = Console.ReadLine();
@@ -257,8 +254,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
         static void EditarChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
         {
             InserirTituloLimpar("Editar Chamado\n");
-
-
         }
         static void ExcluirChamados(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
         {
