@@ -74,10 +74,10 @@ namespace GestaoDeEquipamentos.ConsoleApp
         }
         static char MenuOpcoesControleChamados(out char opcao_controle_chamados)
         {
-            Console.WriteLine("[1] Título do Chamado");
-            Console.WriteLine("[2] Descrição do Chamado");
-            Console.WriteLine("[3] Equipamento");
-            Console.WriteLine("[4] Data de Abertura");
+            Console.WriteLine("[1] Registrar chamado");
+            Console.WriteLine("[2] Vizualizar todos chamados");
+            Console.WriteLine("[3] Editar chamados");
+            Console.WriteLine("[4] Excluir chamados");
             Console.WriteLine("[s] Sair Controle de Chamados");
             opcao_controle_chamados = Convert.ToChar(Console.ReadLine());
             return opcao_controle_chamados;
@@ -105,16 +105,16 @@ namespace GestaoDeEquipamentos.ConsoleApp
             switch (opcao_controle_chamados)
             {
                 case '1':
-                    TituloChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    RegistrarChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
                     break;
                 case '2':
-                    DescricaoChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    VizualizarChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
                     break;
                 case '3':
-                    EquipamentoChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    EditarChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
                     break;
                 case '4':
-                    DataAberturaChamado(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    ExcluirChamados(titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
                     break;
             }
         }
@@ -212,33 +212,33 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 cont_equipamentos--;
             }
         }
-            #endregion
+        #endregion
 
-            #region Métodos de Chamado
-            static void TituloChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
-            {
-                InserirTituloLimpar("Título do Chamado\n");
-            }
-            static void DescricaoChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
-            {
-                InserirTituloLimpar("Descrição do Chamado\n");
-            }
-            static void EquipamentoChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
-            {
-                InserirTituloLimpar("Equipamento do Chamado\n");
-            }
-            static void DataAberturaChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
-            {
-                InserirTituloLimpar("Data de Abertura Chamado\n");
-            }
-            #endregion
-
-            #region Métodos Auxiliares
-            static void InserirTituloLimpar(string mensagem)
-            {
-                Console.Clear();
-                Console.WriteLine(mensagem);
-            }
-            #endregion
+        #region Métodos de Chamado
+        static void RegistrarChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
+        {
+            InserirTituloLimpar("Registrar Chamado\n");
         }
+        static void VizualizarChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
+        {
+            InserirTituloLimpar("Inserir Chamado\n");
+        }
+        static void EditarChamado(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
+        {
+            InserirTituloLimpar("Editar Chamado\n");
+        }
+        static void ExcluirChamados(string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
+        {
+            InserirTituloLimpar("Excluir Chamado\n");
+        }
+        #endregion
+
+        #region Métodos Auxiliares
+        static void InserirTituloLimpar(string mensagem)
+        {
+            Console.Clear();
+            Console.WriteLine(mensagem);
+        }
+        #endregion
     }
+}
