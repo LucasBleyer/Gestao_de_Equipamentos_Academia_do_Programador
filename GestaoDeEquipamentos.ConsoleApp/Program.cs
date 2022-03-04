@@ -276,7 +276,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 Console.WriteLine("ID do equipamento do chamado: " + ids_equipamentos[i]);
                 Console.WriteLine("Data de abertura do chamado: " + data_abertura_chamado[i]);
             }
-            OperacaoEfutuada("Existe(m) " + cont_chamados + " chmados(s) registrado(s)...");
+            OperacaoEfutuada("Existe(m) " + cont_chamados + " chamados(s) registrado(s)...");
             Console.ReadKey();
         }
         static void EditarChamado(int[] ids_equipamentos, int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
