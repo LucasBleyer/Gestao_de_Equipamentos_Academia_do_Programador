@@ -223,7 +223,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
         {
             Console.Write("Informe o ID de um equipamento a ser excluído: ");
             int id_excluir = Convert.ToInt32(Console.ReadLine());
-            ids_equipamentos[cont_equipamentos-1] = id_excluir;
+            ids_equipamentos[cont_equipamentos - 1] = id_excluir;
 
             for (int i = 0; i < ids_equipamentos.Length; i++)
             {
@@ -237,7 +237,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
                     cont_equipamentos--;
                     OperacaoEfutuada("Equipamento Excluído");
                 }
-                
+
             }
             Console.ReadKey();
         }
@@ -312,7 +312,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
         {
             Console.Write("Informe o ID de um equipamento a ser excluído: ");
             int id_excluir = Convert.ToInt32(Console.ReadLine());
-            ids_chamados[cont_equipamentos-1] = id_excluir;
+            ids_chamados[cont_equipamentos - 1] = id_excluir;
 
             for (int i = 0; i < ids_chamados.Length; i++)
             {
@@ -330,11 +330,11 @@ namespace GestaoDeEquipamentos.ConsoleApp
         static void InserirTituloLimpar(string mensagem)
         {
             Console.Clear();
-            Console.BackgroundColor = ConsoleColor.Cyan;
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
             Console.WriteLine(mensagem);
             Console.ResetColor();
         }
-
         static void OperacaoEfutuada(string mensagem)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
