@@ -139,7 +139,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
                     break;
                 case '4':
                     InserirTituloLimpar("Excluir Chamado\n");
-                    ExcluirChamados(ids_chamados, titulo_chamado, descricao_chamado, data_abertura_chamado);
+                    ExcluirChamados(ids_equipamentos, ids_chamados, titulo_chamado, descricao_chamado, data_abertura_chamado);
                     break;
             }
         }
@@ -173,22 +173,23 @@ namespace GestaoDeEquipamentos.ConsoleApp
         }
         static void VizualizarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-                for (int i = 0; i < cont_equipamentos; i++)
+            for (int i = 0; i < cont_equipamentos; i++)
+            {
+                if (nome_equipamento[i] != null && preco_equipamento[i] != default && numero_serie[i] != default && data_fabricacao[i] != null)
                 {
                     Console.WriteLine("ID do equipamento: " + i);
                     Console.WriteLine("Nome do equipamento: " + nome_equipamento[i]);
                     Console.WriteLine("Preço do equipamento: " + preco_equipamento[i]);
                     Console.WriteLine("Número de série do equipamento: " + numero_serie[i]);
                     Console.WriteLine("Data de fabricação do equipamento: " + data_fabricacao[i]);
-                    Console.WriteLine("Nome fabricante equipamento: " + nome_fabricante[i]+"\n");
+                    Console.WriteLine("Nome fabricante equipamento: " + nome_fabricante[i] + "\n");
                 }
+            }
             OperacaoEfutuada("Existe(m) " + cont_equipamentos + " equipamento(s) registrado(s)... ");
-            Console.Read(); 
+            Console.Read();
         }
         static void EditarEquipamento(int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            VizualizarEquipamento(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
-
             Console.Write("Informe o ID de um equipamento a ser editado: ");
             int id_usuario = Convert.ToInt32(Console.ReadLine());
             ids_equipamentos[cont_equipamentos] = id_usuario;
@@ -221,8 +222,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
         }
         static void ExcluirEquipamento(int[] ids_chamados, int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            VizualizarEquipamento(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
-
             Console.Write("Informe o ID de um equipamento a ser excluído: ");
             int id_excluir = Convert.ToInt32(Console.ReadLine());
             ids_equipamentos[cont_equipamentos] = id_excluir;
@@ -270,11 +269,14 @@ namespace GestaoDeEquipamentos.ConsoleApp
         {
             for (int i = 0; i < cont_chamados; i++)
             {
-                Console.WriteLine("ID do chamado: " + i);
-                Console.WriteLine("Título do chamado: " + titulo_chamado[i]);
-                Console.WriteLine("Descrição do chamado: " + descricao_chamado[i]);
-                Console.WriteLine("ID do equipamento do chamado: " + ids_equipamentos[i]);
-                Console.WriteLine("Data de abertura do chamado: " + data_abertura_chamado[i]);
+                if (titulo_chamado[i] != null && descricao_chamado[i] != null && ids_equipamentos[i] != default && data_abertura_chamado[i] != null)
+                {
+                    Console.WriteLine("ID do chamado: " + i);
+                    Console.WriteLine("Título do chamado: " + titulo_chamado[i]);
+                    Console.WriteLine("Descrição do chamado: " + descricao_chamado[i]);
+                    Console.WriteLine("ID do equipamento do chamado: " + ids_equipamentos[i]);
+                    Console.WriteLine("Data de abertura do chamado: " + data_abertura_chamado[i]);
+                }
             }
             OperacaoEfutuada("Existe(m) " + cont_chamados + " chamados(s) registrado(s)...");
             Console.Read();
@@ -307,7 +309,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
             }
             OperacaoEfutuada("Chamado Editado");
         }
-        static void ExcluirChamados(int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
+        static void ExcluirChamados(int[] ids_equipamentos, int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
         {
             Console.Write("Informe o ID de um equipamento a ser excluído: ");
             int id_excluir = Convert.ToInt32(Console.ReadLine());
@@ -318,8 +320,9 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 if (id_excluir == ids_chamados[i])
                 {
                     titulo_chamado[i] = null;
-                    descricao_chamado[i] = default;
-                    data_abertura_chamado[i] = default;
+                    descricao_chamado[i] = null;
+                    ids_equipamentos[i] = default;
+                    data_abertura_chamado[i] = null;
 
                     OperacaoEfutuada("Chamado Excluído");
                     break;
