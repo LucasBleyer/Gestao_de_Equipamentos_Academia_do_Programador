@@ -170,24 +170,25 @@ namespace GestaoDeEquipamentos.ConsoleApp
 
             cont_equipamentos++;
             OperacaoEfutuada("Equipamento Registrado");
-            Console.ReadKey();
         }
         static void VizualizarEquipamento(string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
-            for (int i = 0; i < cont_equipamentos; i++)
-            {
-                Console.WriteLine("ID do equipamento: " + i);
-                Console.WriteLine("Nome do equipamento: " + nome_equipamento[i]);
-                Console.WriteLine("Preço do equipamento: " + preco_equipamento[i]);
-                Console.WriteLine("Número de série do equipamento: " + numero_serie[i]);
-                Console.WriteLine("Data de fabricação do equipamento: " + data_fabricacao[i]);
-                Console.WriteLine("Nome fabricante equipamento: " + nome_fabricante[i]);
-            }
+                for (int i = 0; i < cont_equipamentos; i++)
+                {
+                    Console.WriteLine("ID do equipamento: " + i);
+                    Console.WriteLine("Nome do equipamento: " + nome_equipamento[i]);
+                    Console.WriteLine("Preço do equipamento: " + preco_equipamento[i]);
+                    Console.WriteLine("Número de série do equipamento: " + numero_serie[i]);
+                    Console.WriteLine("Data de fabricação do equipamento: " + data_fabricacao[i]);
+                    Console.WriteLine("Nome fabricante equipamento: " + nome_fabricante[i]+"\n");
+                }
             OperacaoEfutuada("Existe(m) " + cont_equipamentos + " equipamento(s) registrado(s)... ");
-            Console.ReadKey();
+            Console.Read(); 
         }
         static void EditarEquipamento(int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
+            VizualizarEquipamento(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
+
             Console.Write("Informe o ID de um equipamento a ser editado: ");
             int id_usuario = Convert.ToInt32(Console.ReadLine());
             ids_equipamentos[cont_equipamentos] = id_usuario;
@@ -217,29 +218,29 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 nome_fabricante[cont_equipamentos - 1] = fabricante;
             }
             OperacaoEfutuada("Equipamento Editado");
-            Console.ReadKey();
         }
         static void ExcluirEquipamento(int[] ids_chamados, int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
+            VizualizarEquipamento(nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
+
             Console.Write("Informe o ID de um equipamento a ser excluído: ");
             int id_excluir = Convert.ToInt32(Console.ReadLine());
-            ids_equipamentos[cont_equipamentos - 1] = id_excluir;
+            ids_equipamentos[cont_equipamentos] = id_excluir;
 
             for (int i = 0; i < ids_equipamentos.Length; i++)
             {
-                if (id_excluir == ids_chamados[i])
+                if (id_excluir == ids_equipamentos[i])
                 {
-                    OperacaoEfutuada("Não é possível excluir um equipamento registrado em um chamado!");
+                    nome_equipamento[i] = null;
+                    preco_equipamento[i] = default;
+                    numero_serie[i] = default;
+                    data_fabricacao[i] = null;
+                    nome_fabricante[i] = null;
+
+                    OperacaoEfutuada("Equipamento Excluído");
                     break;
                 }
-                else
-                {
-                    cont_equipamentos--;
-                    OperacaoEfutuada("Equipamento Excluído");
-                }
-
             }
-            Console.ReadKey();
         }
         #endregion
 
@@ -264,7 +265,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
 
             cont_chamados++;
             OperacaoEfutuada("Chamado Registrado");
-            Console.ReadKey();
         }
         static void VizualizarChamado(int[] ids_equipamentos, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
         {
@@ -277,7 +277,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 Console.WriteLine("Data de abertura do chamado: " + data_abertura_chamado[i]);
             }
             OperacaoEfutuada("Existe(m) " + cont_chamados + " chamados(s) registrado(s)...");
-            Console.ReadKey();
+            Console.Read();
         }
         static void EditarChamado(int[] ids_equipamentos, int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
         {
@@ -306,7 +306,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 data_abertura_chamado[cont_chamados - 1] = data;
             }
             OperacaoEfutuada("Chamado Editado");
-            Console.ReadKey();
         }
         static void ExcluirChamados(int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
         {
@@ -316,13 +315,16 @@ namespace GestaoDeEquipamentos.ConsoleApp
 
             for (int i = 0; i < ids_chamados.Length; i++)
             {
-                if (id_excluir == i)
+                if (id_excluir == ids_chamados[i])
                 {
-                    cont_chamados--;
+                    titulo_chamado[i] = null;
+                    descricao_chamado[i] = default;
+                    data_abertura_chamado[i] = default;
+
+                    OperacaoEfutuada("Chamado Excluído");
+                    break;
                 }
             }
-            OperacaoEfutuada("Chamado Excluído");
-            Console.ReadKey();
         }
         #endregion
 
