@@ -17,7 +17,6 @@ namespace GestaoDeEquipamentos.ConsoleApp
 
             String[] titulo_chamado = new string[1000];
             String[] descricao_chamado = new String[1000];
-            String[] equipamento_chamado = new String[1000];
             String[] data_abertura_chamado = new string[1000];
             int[] ids_chamados = new int[1000];
 
@@ -36,7 +35,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
                     InserirTituloLimpar("Controle de Equipamentos");
                     char opcao_controle_equipamentos;
                     MenuOpcoesControleEquipamentos(out opcao_controle_equipamentos);
-                    VerificaOpcaoControleEquipamentos(ids_equipamentos, nomes_equipamentos, precos_equipamentos, numeros_serie, datas_fabricacao, nomes_fabricantes, opcao_controle_equipamentos);
+                    VerificaOpcaoControleEquipamentos(ids_chamados, ids_equipamentos, nomes_equipamentos, precos_equipamentos, numeros_serie, datas_fabricacao, nomes_fabricantes, opcao_controle_equipamentos);
                     if (opcao_controle_equipamentos == 's')
                     {
                         continue;
@@ -47,7 +46,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
                     InserirTituloLimpar("Controle de Chamados");
                     char opcao_controle_chamados;
                     MenuOpcoesControleChamados(out opcao_controle_chamados);
-                    VerificaOpcaoControleChamados(ids_equipamentos, ids_chamados, titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado, opcao_controle_chamados);
+                    VerificaOpcaoControleChamados(ids_equipamentos, ids_chamados, titulo_chamado, descricao_chamado, data_abertura_chamado, opcao_controle_chamados);
                     if (opcao_controle_chamados == 's')
                     {
                         continue;
@@ -59,36 +58,48 @@ namespace GestaoDeEquipamentos.ConsoleApp
         static char MenuPrincipal()
         {
             char opcao_menu_principal;
-            Console.WriteLine("[1] Controle de Equipamentos");
-            Console.WriteLine("[2] Controle de Chamados");
-            Console.WriteLine("[s] Sair");
-            opcao_menu_principal = Convert.ToChar(Console.ReadLine().ToLower());
+            do
+            {
+                InserirTituloLimpar("Gestão de Equipamentos e Chamados\n");
+                Console.WriteLine("[1] Controle de Equipamentos");
+                Console.WriteLine("[2] Controle de Chamados");
+                Console.WriteLine("[s] Sair");
+                opcao_menu_principal = Convert.ToChar(Console.ReadLine().ToLower());
+            } while (opcao_menu_principal != '1' && opcao_menu_principal != '2' && opcao_menu_principal != 's');
             return opcao_menu_principal;
         }
         static char MenuOpcoesControleEquipamentos(out char opcao_controle_equipamentos)
         {
-            Console.WriteLine("[1] Registrar equipamentos");
-            Console.WriteLine("[2] Visualizar todos os equipamentos registrados");
-            Console.WriteLine("[3] Editar um equipamento");
-            Console.WriteLine("[4] Excluir um equipamento já registrado");
-            Console.WriteLine("[s] Sair Controle de Equipamentos");
-            opcao_controle_equipamentos = Convert.ToChar(Console.ReadLine());
+            do
+            {
+                InserirTituloLimpar("Controle de Equipamentos\n");
+                Console.WriteLine("[1] Registrar equipamentos");
+                Console.WriteLine("[2] Visualizar todos os equipamentos registrados");
+                Console.WriteLine("[3] Editar um equipamento");
+                Console.WriteLine("[4] Excluir um equipamento já registrado");
+                Console.WriteLine("[s] Sair Controle de Equipamentos");
+                opcao_controle_equipamentos = Convert.ToChar(Console.ReadLine());
+            } while (opcao_controle_equipamentos != '1' && opcao_controle_equipamentos != '2' && opcao_controle_equipamentos != '3' && opcao_controle_equipamentos != '4' && opcao_controle_equipamentos != 's');
             return opcao_controle_equipamentos;
         }
         static char MenuOpcoesControleChamados(out char opcao_controle_chamados)
         {
-            Console.WriteLine("[1] Registrar chamado");
-            Console.WriteLine("[2] Vizualizar todos chamados");
-            Console.WriteLine("[3] Editar chamados");
-            Console.WriteLine("[4] Excluir chamados");
-            Console.WriteLine("[s] Sair Controle de Chamados");
-            opcao_controle_chamados = Convert.ToChar(Console.ReadLine());
+            do
+            {
+                InserirTituloLimpar("Controle de Chamados\n");
+                Console.WriteLine("[1] Registrar chamado");
+                Console.WriteLine("[2] Vizualizar todos chamados");
+                Console.WriteLine("[3] Editar chamados");
+                Console.WriteLine("[4] Excluir chamados");
+                Console.WriteLine("[s] Sair Controle de Chamados");
+                opcao_controle_chamados = Convert.ToChar(Console.ReadLine());
+            } while (opcao_controle_chamados != '1' && opcao_controle_chamados != '2' && opcao_controle_chamados != '3' && opcao_controle_chamados != '4' && opcao_controle_chamados != 's');
             return opcao_controle_chamados;
         }
         #endregion
 
         #region Método Verificar Opções Menu
-        static void VerificaOpcaoControleEquipamentos(int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante, char opcao_controle_equipamentos)
+        static void VerificaOpcaoControleEquipamentos(int[] ids_chamados, int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante, char opcao_controle_equipamentos)
         {
             switch (opcao_controle_equipamentos)
             {
@@ -106,29 +117,29 @@ namespace GestaoDeEquipamentos.ConsoleApp
                     break;
                 case '4':
                     InserirTituloLimpar("Excluir Equipamento\n");
-                    ExcluirEquipamento(ids_equipamentos, nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
+                    ExcluirEquipamento(ids_chamados, ids_equipamentos, nome_equipamento, preco_equipamento, numero_serie, data_fabricacao, nome_fabricante);
                     break;
             }
         }
-        static void VerificaOpcaoControleChamados(int[] ids_equipamentos, int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado, char opcao_controle_chamados)
+        static void VerificaOpcaoControleChamados(int[] ids_equipamentos, int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado, char opcao_controle_chamados)
         {
             switch (opcao_controle_chamados)
             {
                 case '1':
                     InserirTituloLimpar("Registrar chamado\n");
-                    RegistrarChamado(ids_equipamentos, titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    RegistrarChamado(ids_equipamentos, titulo_chamado, descricao_chamado, data_abertura_chamado);
                     break;
                 case '2':
                     InserirTituloLimpar("Vizualizar Chamado\n");
-                    VizualizarChamado(ids_equipamentos, titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    VizualizarChamado(ids_equipamentos, titulo_chamado, descricao_chamado, data_abertura_chamado);
                     break;
                 case '3':
                     InserirTituloLimpar("Editar Chamado\n");
-                    EditarChamado(ids_equipamentos, ids_chamados, titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    EditarChamado(ids_equipamentos, ids_chamados, titulo_chamado, descricao_chamado, data_abertura_chamado);
                     break;
                 case '4':
                     InserirTituloLimpar("Excluir Chamado\n");
-                    ExcluirChamados(ids_chamados, titulo_chamado, descricao_chamado, equipamento_chamado, data_abertura_chamado);
+                    ExcluirChamados(ids_chamados, titulo_chamado, descricao_chamado, data_abertura_chamado);
                     break;
             }
         }
@@ -171,8 +182,8 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 Console.WriteLine("Número de série do equipamento: " + numero_serie[i]);
                 Console.WriteLine("Data de fabricação do equipamento: " + data_fabricacao[i]);
                 Console.WriteLine("Nome fabricante equipamento: " + nome_fabricante[i]);
-                OperacaoEfutuada("Existe(m) " + cont_equipamentos + " equipamento(s) registrado(s)... ");
             }
+            OperacaoEfutuada("Existe(m) " + cont_equipamentos + " equipamento(s) registrado(s)... ");
             Console.ReadKey();
         }
         static void EditarEquipamento(int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
@@ -208,26 +219,32 @@ namespace GestaoDeEquipamentos.ConsoleApp
             OperacaoEfutuada("Equipamento Editado");
             Console.ReadKey();
         }
-        static void ExcluirEquipamento(int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
+        static void ExcluirEquipamento(int[] ids_chamados, int[] ids_equipamentos, string[] nome_equipamento, decimal[] preco_equipamento, int[] numero_serie, string[] data_fabricacao, string[] nome_fabricante)
         {
             Console.Write("Informe o ID de um equipamento a ser excluído: ");
             int id_excluir = Convert.ToInt32(Console.ReadLine());
-            ids_equipamentos[cont_equipamentos] = id_excluir;
+            ids_equipamentos[cont_equipamentos-1] = id_excluir;
 
             for (int i = 0; i < ids_equipamentos.Length; i++)
             {
-                if (id_excluir == i)
+                if (id_excluir == ids_chamados[i])
+                {
+                    OperacaoEfutuada("Não é possível excluir um equipamento registrado em um chamado!");
+                    break;
+                }
+                else
                 {
                     cont_equipamentos--;
+                    OperacaoEfutuada("Equipamento Excluído");
                 }
+                
             }
-            OperacaoEfutuada("Equipamento Excluído");
             Console.ReadKey();
         }
         #endregion
 
         #region Métodos de Chamado
-        static void RegistrarChamado(int[] ids_equipamentos, string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
+        static void RegistrarChamado(int[] ids_equipamentos, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
         {
             Console.Write("Informe o título do chamado: ");
             string titulo = Console.ReadLine();
@@ -249,7 +266,7 @@ namespace GestaoDeEquipamentos.ConsoleApp
             OperacaoEfutuada("Chamado Registrado");
             Console.ReadKey();
         }
-        static void VizualizarChamado(int[] ids_equipamentos, string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
+        static void VizualizarChamado(int[] ids_equipamentos, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
         {
             for (int i = 0; i < cont_chamados; i++)
             {
@@ -258,11 +275,11 @@ namespace GestaoDeEquipamentos.ConsoleApp
                 Console.WriteLine("Descrição do chamado: " + descricao_chamado[i]);
                 Console.WriteLine("ID do equipamento do chamado: " + ids_equipamentos[i]);
                 Console.WriteLine("Data de abertura do chamado: " + data_abertura_chamado[i]);
-                OperacaoEfutuada("Existe(m) " + cont_chamados + " chmados(s) registrado(s)...");
             }
+            OperacaoEfutuada("Existe(m) " + cont_chamados + " chmados(s) registrado(s)...");
             Console.ReadKey();
         }
-        static void EditarChamado(int[] ids_equipamentos, int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
+        static void EditarChamado(int[] ids_equipamentos, int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
         {
             Console.Write("Informe o ID do chamado a ser editado: ");
             int id_editar = Convert.ToInt32(Console.ReadLine());
@@ -291,11 +308,11 @@ namespace GestaoDeEquipamentos.ConsoleApp
             OperacaoEfutuada("Chamado Editado");
             Console.ReadKey();
         }
-        static void ExcluirChamados(int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] equipamento_chamado, string[] data_abertura_chamado)
+        static void ExcluirChamados(int[] ids_chamados, string[] titulo_chamado, string[] descricao_chamado, string[] data_abertura_chamado)
         {
             Console.Write("Informe o ID de um equipamento a ser excluído: ");
             int id_excluir = Convert.ToInt32(Console.ReadLine());
-            ids_chamados[cont_equipamentos] = id_excluir;
+            ids_chamados[cont_equipamentos-1] = id_excluir;
 
             for (int i = 0; i < ids_chamados.Length; i++)
             {
@@ -313,12 +330,14 @@ namespace GestaoDeEquipamentos.ConsoleApp
         static void InserirTituloLimpar(string mensagem)
         {
             Console.Clear();
+            Console.BackgroundColor = ConsoleColor.Cyan;
             Console.WriteLine(mensagem);
+            Console.ResetColor();
         }
 
         static void OperacaoEfutuada(string mensagem)
         {
-            Console.ForegroundColor = ConsoleColor.Blue;
+            Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine(mensagem);
             Console.ResetColor();
         }
